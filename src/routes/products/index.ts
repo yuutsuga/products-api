@@ -4,14 +4,14 @@ import { Router } from "express";
 const prisma = new PrismaClient();
 const router = Router();
 
-/* getting all the products */
+/* get all the products */
 router.get('/', async (req, res) => {
     const products = await prisma.product.findMany({ });
 
     res.status(200).send({ products });
 });
 
-/* creating a product */
+/* create a product */
 router.post('/create', async (req, res) => {
     const { name, price } = req.body;
     
@@ -25,7 +25,7 @@ router.post('/create', async (req, res) => {
     res.status(200).send({ product: newProduct });
 });
 
-/* updating product */
+/* update product */
 router.put('/update', async (req, res) => {
     const { id, name, price } = req.body;
 
@@ -51,6 +51,7 @@ router.put('/update', async (req, res) => {
     return res.status(200).send({ updated: true });
 });
 
+/* delete a product */
 router.delete('/delete', async (req, res) => {
     const { id } = req.body;
 
